@@ -17,7 +17,7 @@
   <link href="css/main.82cfd66e.css" rel="stylesheet">
   <link href="css/my-style.css" rel="stylesheet">
 
-  <title><?php echo $title ?></title>
+  <title><?php echo $title; ?></title>
 </head>
 
 <body>
@@ -45,11 +45,10 @@
       </div>
 
       <ul class="nav flex-column">
-        <li><a href="" title="">Inicio</a></li>
+        <li><a href="<?php echo base_url('/') ?>" title="">Inicio</a></li>
         <li><a href="" title="">Perfil</a></li>
-        <li><a href="" title="">Adicionar</a></li>
+        <li><a href="<?php echo base_url('adicionar-publicacao') ?>" title="">Adicionar</a></li>
         <li><a href="" title="">Marcados gostei</a></li>
-        
       </ul>
 
       <form action="" class="reveal-content">

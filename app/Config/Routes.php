@@ -34,6 +34,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Inicio::index');
 $routes->get('/adicionar-publicacao', 'AdicionarPublicacao::index');
+$routes->get('/login', 'Login::index');
+$routes->get('/criar-conta', 'CriarConta::index');
 
 /*
  * --------------------------------------------------------------------
