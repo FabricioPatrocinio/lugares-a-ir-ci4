@@ -1,3 +1,6 @@
+# Lugares a ir
+Rede social lugares a ir. A ideia é que as pessoas possam compartilhar fotos e localização de lugares legais para um passeios. Será feito usando duas linguagens, nessa estou usando PHP com Codeigniter 4 
+
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?
@@ -61,4 +64,3 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 - [mbstring](http://php.net/manual/en/mbstring.installation.php)
 - [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
 - xml (enabled by default - don't turn it off)
-# lugares-a-ir-ci4
