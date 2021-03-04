@@ -84,17 +84,25 @@
           <p>Faça login siga pessoas e fique por dentro de lugares incriveis para passeios lazer.</p>
         </div>
 
-       <form action="" class="reveal-content" method="post">
+       <form action="<?=base_url('login')?>" class="reveal-content" method="post">
           <div class="row">
-
             <div class="col-md-6">
+              <!-- validation erros -->
+              <?php if (!empty($validation)): ?>
+                <div class="alert alert-<?=$class_error?>" role="alert">
+                  <?php foreach ($validation as $erro): ?>
+                    <?=$erro?>
+                  <?php endforeach;?>
+                </div>
+              <?php endif?>
+              <!-- validation erros -->
               <div class="form-group">
-                <input type="text" name="local" class="form-control" placeholder="Local">
+                <input type="text" name="nome" class="form-control" placeholder="Nome de usuário" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : ''?>">
               </div>
               <div class="form-group">
-                <input type="text" name="nome_local" class="form-control" placeholder="Nome do local">
+                <input type="password" name="senha" class="form-control" placeholder="Sua senha">
               </div>
-              <button type="submit" class="btn btn-primary btn-lg">Adicionar</button>
+              <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
 
               <div class="section-container-spacer mt-5">
                 <h4>Ou</h4>
@@ -124,7 +132,7 @@
     });
 </script>
 
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID
 <script>
   (function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {

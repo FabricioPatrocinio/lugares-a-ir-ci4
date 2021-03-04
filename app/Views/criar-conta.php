@@ -85,32 +85,40 @@
     </div>
 
     <div class="section-container-spacer">
-        <!-- validation erros -->
-        <?php if($erros != '') : ?>
-        <div class="alert alert-<?php echo $class_error ?>" role="alert">
-            <?php foreach ($erros as $erro) : ?>
-                <?php echo $erro ?>
-            <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
-        <!-- validation erros -->
-       <form class="reveal-content" method="post" enctype="multipart/form-data">
+       <form class="reveal-content" action="<?=base_url('criar-conta');?>" method="post" enctype="multipart/form-data">
           <div class="row">
             <div class="col-md-6">
-              
+
+              <!-- validation erros -->
+              <?php if (!empty($erros)): ?>
+                <div class="alert alert-<?=$class_error?>" role="alert">
+                    <?php foreach ($erros as $erro): ?>
+                        <?=$erro?>
+                    <?php endforeach;?>
+                </div>
+              <?php endif?>
+
+              <?php if (!empty($msg)): ?>
+                <div class="alert alert-<?=$class_error?>" role="alert">
+                  <?=$msg?>
+                  <a href="<?=base_url('login')?>" class="btn btn-info btn-lg">Fazer login</a>
+                </div>
+              <?php endif?>
+              <!-- validation erros -->
+
               <div class="form-group">
-                <input type="text" name="nome" class="form-control" placeholder="Nome">
+                <input type="text" name="nome" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : ''?>" placeholder="Nome">
               </div>
               <div class="form-group border">
-                <input type="file" class="custom-file-input" name="imagens" id="input-img"/>
+                <input type="file" class="custom-file-input" value="<?php echo (isset($_POST['img_perfil'])) ? $_POST['img_perfil'] : ''?>" name="imagens" id="input-img"/>
                 <i class="fa fa-picture-o fa-2x" style="padding-right: 10px;"></i>
                 <label class="custom-file-label" id="file-name">Selecione uma foto de perfil</label>
               </div>
               <div class="form-group">
-                <input type="email" name="email" class="form-control" placeholder="email">
+                <input type="text" name="email" value="<?php echo (isset($_POST['email'])) ? $_POST['email'] : ''?>" class="form-control" placeholder="email">
               </div>
               <div class="form-group">
-                <input type="password" name="senha" class="form-control" placeholder="Crie sua senha">
+                <input type="password" name="senha" value="<?php echo (isset($_POST['senha'])) ? $_POST['senha'] : ''?>" class="form-control" placeholder="Crie sua senha">
               </div>
               <div class="form-group">
                 <input type="password" name="conf_senha" class="form-control" placeholder="Confirme sua senha">
@@ -146,7 +154,7 @@
     });
 </script>
 
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID
 <script>
   (function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
