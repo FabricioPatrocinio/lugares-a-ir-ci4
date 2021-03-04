@@ -101,7 +101,7 @@
               <?php if (!empty($msg)): ?>
                 <div class="alert alert-<?=$class_error?>" role="alert">
                   <?=$msg?>
-                  <a href="<?=base_url('login')?>" class="btn btn-info btn-lg">Fazer login</a>
+                  <a href="<?=base_url('login')?>" class="btn btn-primary btn-sm">Fazer login</a>
                 </div>
               <?php endif?>
               <!-- validation erros -->
@@ -110,7 +110,7 @@
                 <input type="text" name="nome" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : ''?>" placeholder="Nome">
               </div>
               <div class="form-group border">
-                <input type="file" class="custom-file-input" value="<?php echo (isset($_POST['img_perfil'])) ? $_POST['img_perfil'] : ''?>" name="imagens" id="input-img"/>
+                <input type="file" class="custom-file-input" value="<?php echo (isset($_POST['img_perfil'])) ? $_POST['img_perfil'] : ''?>" name="img_perfil" id="input-img"/>
                 <i class="fa fa-picture-o fa-2x" style="padding-right: 10px;"></i>
                 <label class="custom-file-label" id="file-name">Selecione uma foto de perfil</label>
               </div>

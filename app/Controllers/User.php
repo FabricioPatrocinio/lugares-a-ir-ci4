@@ -41,7 +41,7 @@ class User extends BaseController
 
                 $this->setUserSession($user);
 
-                return redirect()->to('index');
+                return redirect()->to('/');
             }
         }
 
@@ -52,9 +52,7 @@ class User extends BaseController
     {
         $data = [
             'id' => $user['id'],
-            'firstname' => $user['nome'],
-            'lastname' => $user['nome'],
-            'email' => $user['email'],
+            'nome' => $user['nome'],
             'isLoggedIn' => true,
         ];
 
@@ -77,12 +75,26 @@ class User extends BaseController
             $userModel->set('nome', $this->request->getPost('nome'));
             $userModel->set('email', $this->request->getPost('email'));
             $userModel->set('senha', $this->request->getPost('senha'));
-            $userModel->set('img_perfil', $this->request->getPost('img_perfil'));
             $userModel->set('conf_senha', $this->request->getPost('conf_senha'));
 
-            if ($userModel->save()) {
+            $file = $this->request->getFile('img_perfil');
+            $newName = $file->getRandomName();
+            // Take name img for save DB
+            $userModel->set('img_perfil', $newName);
+
+            if ($userModel->insert()) {
+                // Upload images
+                if ($file) {
+                    $file->move('uploads/img/perfil', $newName);
+                }
+
                 $data['msg'] = 'Conta criada com sucesso.';
                 $data['class_error'] = 'success';
+
+                // Clear values the input
+                $_POST['nome'] = '';
+                $_POST['email'] = '';
+                $_POST['senha'] = '';
             } else {
                 $data['erros'] = $userModel->errors();
                 $data['class_error'] = 'danger';
