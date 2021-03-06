@@ -1,5 +1,7 @@
 <?php namespace App\Controllers;
 
+use App\Models\UserModel;
+
 class User extends BaseController
 {
     public function login()
@@ -7,8 +9,6 @@ class User extends BaseController
         $data['title'] = 'Login';
 
         if ($this->request->getMethod() == 'post') {
-            $userModel = new \App\Models\UserModel();
-
             $rules = [
                 'nome' => 'required|min_length[3]|max_length[50]',
                 'senha' => 'required|min_length[8]|max_length[255]|validateUser[nome,senha]',
@@ -30,15 +30,17 @@ class User extends BaseController
                 ],
             ];
 
-            if (!$this->validate($rules, $errors)) {
+            if ($this->validate($rules, $errors)) {
                 $data['validation'] = $this->validator->getErrors();
                 $data['class_error'] = 'danger';
             } else {
-                $userModel = new \App\Models\UserModel();
+                $userModel = new UserModel();
 
+                
                 $user = $userModel->where('nome', $this->request->getPost('nome'))
-                    ->first();
-
+                ->where('senha', $this->request->getPost('senha'))
+                ->first();
+                
                 $this->setUserSession($user);
 
                 return redirect()->to('/');
@@ -53,6 +55,8 @@ class User extends BaseController
         $data = [
             'id' => $user['id'],
             'nome' => $user['nome'],
+            'email' => $user['email'],
+            'img_perfil' => $user['img_perfil'],
             'isLoggedIn' => true,
         ];
 
